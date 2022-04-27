@@ -54,25 +54,30 @@ int main(int argc, char** argv) {
         SDL_Event event;
         
         while(SDL_PollEvent(&event)) {
-            if (event.type == SDL_QUIT) {
+            
+            switch (event.type) {
+            case SDL_QUIT:
                 isRunning = false;
-            }
-
-            // https://wiki.libsdl.org/SDL_Keycode
-            if (event.type == SDL_KEYDOWN) {
-                if (event.key.keysym.sym == SDLK_UP) {
-                    std::cout << "UP" << std::endl;
-                } else if (event.key.keysym.sym == SDLK_DOWN) {
-                    std::cout << "DOWN" << std::endl;
-                } else if (event.key.keysym.sym == SDLK_RIGHT) {
-                    std::cout << "RIGHT" << std::endl;
-                } else if (event.key.keysym.sym == SDLK_LEFT) {
-                    std::cout << "LEFT" << std::endl;
+                break;
+            case SDL_KEYDOWN:
+                switch(event.key.keysym.sym) {
+                    case SDLK_UP:
+                        std::cout << "UP" << std::endl;
+                        break;
+                    case SDLK_DOWN:
+                        std::cout << "DOWN" << std::endl;
+                        break;
+                    case SDLK_RIGHT:
+                        std::cout << "RIGHT" << std::endl;
+                        break;
+                    case SDLK_LEFT:
+                        std::cout << "LEFT" << std::endl;
+                        break;
                 }
-            }
-
-            if (event.type == SDL_KEYUP) {
+                break;
+            case SDL_KEYUP:
                 std::cout << "KEY_RELEASED" << std::endl;
+                break;
             }
         }
     }
